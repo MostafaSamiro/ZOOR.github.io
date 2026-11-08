@@ -34,18 +34,18 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: AppleIMX-V33-Android-APK
+          name: AppleIMX-V34-Android-APK
           path: apple-imx-android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
       - name: Publish APK for direct download
         run: |
           mkdir -p apple-imx-download
-          cp apple-imx-android/app/build/outputs/apk/debug/app-debug.apk apple-imx-download/AppleIMX_V33.apk
+          cp apple-imx-android/app/build/outputs/apk/debug/app-debug.apk apple-imx-download/AppleIMX_V34.apk
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add apple-imx-download/AppleIMX_V33.apk
+          git add apple-imx-download/AppleIMX_V34.apk
           if ! git diff --cached --quiet; then
-            git commit -m "Publish AppleIMX V33 Android APK"
+            git commit -m "Publish AppleIMX V34 Android APK"
             git pull --rebase origin main
             git push
           fi
