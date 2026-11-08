@@ -36,13 +36,16 @@ jobs:
             yes | sdkmanager --licenses >/dev/null || true
             sdkmanager "platforms;android-35" "build-tools;35.0.0"
           fi
-      - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '8.9'
+      - name: Get Gradle 8.9 from distribution mirrors
+        run: |
+          curl --fail --location --retry 2 --retry-all-errors --connect-timeout 20 --max-time 180 \
+            https://downloads.gradle.org/distributions/gradle-8.9-bin.zip -o /tmp/gradle-8.9.zip \
+          || curl --fail --location --retry 2 --retry-all-errors --connect-timeout 20 --max-time 180 \
+            https://github.com/gradle/gradle-distributions/releases/download/v8.9.0/gradle-8.9-bin.zip -o /tmp/gradle-8.9.zip
+          unzip -q /tmp/gradle-8.9.zip -d "$RUNNER_TEMP"
       - name: Build APK
         working-directory: apple-imx-android
-        run: gradle --no-daemon --stacktrace :app:assembleDebug
+        run: "$RUNNER_TEMP/gradle-8.9/bin/gradle" --no-daemon --stacktrace :app:assembleDebug
       - name: Save installable APK artifact
         uses: actions/upload-artifact@v4
         with:
