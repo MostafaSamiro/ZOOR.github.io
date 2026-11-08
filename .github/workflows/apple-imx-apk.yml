@@ -24,10 +24,18 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-      - name: Install Android 35 platform
-        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+      - name: Use Android SDK preinstalled on GitHub runner
+        run: |
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          test -d "$ANDROID_HOME"
+          ls "$ANDROID_HOME/platforms"
+          ls "$ANDROID_HOME/build-tools"
+      - name: Install Android 35 platform if needed
+        run: |
+          if [ ! -d "$ANDROID_HOME/platforms/android-35" ] || [ ! -d "$ANDROID_HOME/build-tools/35.0.0" ]; then
+            yes | sdkmanager --licenses >/dev/null || true
+            sdkmanager "platforms;android-35" "build-tools;35.0.0"
+          fi
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
