@@ -3,7 +3,7 @@
 <html dir="rtl" lang="ar">
 <head>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>APPLE OF FORTUNE + IMX - V28</title>
+<title>APPLE OF FORTUNE + IMX - V29</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#071b16;color:#fff;font-family:Arial,Tahoma,sans-serif}
@@ -947,8 +947,7 @@ small,.demo-note{display:none!important}
 .header-arrow{width:29px!important;height:35px!important;font-size:36px!important;}
 .balance{gap:5px!important;min-height:35px!important;height:35px!important;border-radius:21px!important;padding:3px 7px!important;box-shadow:0 1px 4px #0029!important;background:rgba(0,26,25,.88)!important;border:0!important;}
 .balance .add{width:29px!important;height:29px!important;flex:0 0 29px!important;border-radius:9px!important;font-size:23px!important;line-height:1!important;}
-.balance strong{font-size:clamp(12px,3.6vw,15px)!important;line-height:1!important;font-weight:700!important;}
-.balance .currency-icon{font-size:clamp(9px,2.7vw,11px)!important;line-height:1!important;}
+.balance strong{font-size:clamp(12px,3.6vw,15px)!important;line-height:1!important;font-weight:700!important;}.balance .currency-icon{font-size:clamp(9px,2.7vw,11px)!important;line-height:1!important;}
 h1{font-size:clamp(14px,3.8vw,16px)!important;font-weight:400!important;letter-spacing:.25px!important;line-height:1.25!important;margin:1px 0 5px!important;}
 /* Reference: the bright multiplier is a smooth pill; the unused rows are subtle. */
 .board .multiplier{border:0!important;border-radius:12px!important;background:rgba(0,48,35,.74)!important;}
@@ -997,7 +996,8 @@ h1{font-size:clamp(14px,3.8vw,16px)!important;font-weight:400!important;letter-s
   grid-template-rows:repeat(10,var(--v12-row-height))!important;
   height:calc(10 * var(--v12-row-height) + 9 * var(--v12-row-gap))!important;
   width:100%!important;
-  padding:0!important;}
+  padding:0!important;
+}
 .board-wrap{
   padding:0!important;
   overflow:hidden!important;
@@ -1129,6 +1129,119 @@ h1{font-size:clamp(14px,3.8vw,16px)!important;font-weight:400!important;letter-s
   overflow:visible!important;
   clip-path:none!important;
   z-index:1!important;
+}
+&lt;/style&gt;
+
+&lt;style id=&quot;v29-716px-reference-layout&quot;&gt;
+/* Full-screen measured reproduction from the 716 x 1600 original screenshot.
+   The original status bar (~80 image px) belongs to Android and is not drawn by the app.
+   The scaled coordinate unit is 100vw/716; positions refer to the HTML WebView area.
+   Source estimates have approximately +-2 to 5 reference pixel uncertainty. */
+:root {
+ --ref-pitch:15.92178771vw; /* 114 / 716 */
+ --ref-diameter:15.64245810vw; /* 112 / 716 */
+ --v12-row-height:var(--ref-pitch)!important;
+ --v12-row-gap:0px!important;
+}
+html,body{margin:0!important;padding:0!important;width:100%!important;height:100dvh!important;min-height:0!important;overflow:hidden!important}
+main.game {
+ position:relative!important;box-sizing:border-box!important;width:100%!important;max-width:none!important;
+ height:min(100dvh,212.290503vw)!important;min-height:0!important;
+ margin:0!important;padding:0!important;display:block!important;overflow:hidden!important;
+}
+/* Original image: info (31,102), bonus (111,103), balance (252,93), title (248,187).
+   All Y coordinates here subtract ~80 image px used by Android&#x27;s system bar. */
+.top{position:absolute!important;top:0!important;left:0!important;width:100%!important;height:11.0vw!important;min-height:0!important;margin:0!important;display:block!important;z-index:15!important}
+.top-left{position:absolute!important;left:4.329609vw!important;top:3.072626vw!important;display:flex!important;align-items:center!important;gap:4.189944vw!important;width:auto!important;margin:0!important;padding:0!important}
+.top-left .header-icon{width:6.983240vw!important;height:6.983240vw!important;min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;line-height:1!important;font-size:6.4vw!important;border-width:.5vw!important}
+.top-left .bonus-icon{width:6.983240vw!important;height:6.843575vw!important;min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;font-size:1.5vw!important}
+.top-left .bonus-icon span{font-size:2.4vw!important}
+.top .balance {position:absolute!important;left:35.195531vw!important;top:1.815642vw!important;
+ width:29.748603vw!important;height:9.217877vw!important;max-width:none!important;min-width:0!important;
+ box-sizing:border-box!important;display:flex!important;align-items:center!important;gap:1.0vw!important;
+ padding:0 1.12vw!important;margin:0!important;border:0!important;border-radius:5vw!important}
+.top .balance .add{width:9.078212vw!important;height:6.983240vw!important;min-width:0!important;min-height:0!important;
+ border-radius:1.7vw!important;font-size:5vw!important;padding:0!important;flex:0 0 auto!important}
+.top .balance strong{font-size:3.4vw!important;line-height:1!important;white-space:nowrap!important}
+.top .balance .currency-icon{font-size:2.7vw!important;white-space:nowrap!important}
+.top .header-arrow{position:absolute!important;left:89.944134vw!important;top:3.910615vw!important;
+ width:5vw!important;height:5.586592vw!important;min-width:0!important;min-height:0!important;
+ padding:0!important;margin:0!important;display:grid!important;place-items:center!important;font-size:7vw!important}
+h1{position:absolute!important;top:14.944134vw!important;left:0!important;width:100%!important;
+ height:3.631285vw!important;line-height:3.631285vw!important;min-height:0!important;
+ margin:0!important;padding:0!important;font-size:3.63vw!important;font-weight:400!important;letter-spacing:0!important;white-space:nowrap!important;text-align:center!important}
+/* Grid: left pill starts x=16 and ends x=114. First disc x=130.
+   Disc centers: 186,300,414,529,643. Grid pitch 114px and disc diameter 112px. */
+.board-wrap{position:absolute!important;top:19.553073vw!important;left:0!important;width:100%!important;
+ height:123.743017vw!important;min-height:0!important;max-height:none!important;
+ margin:0!important;padding:0!important;border:0!important;border-radius:0!important;
+ display:block!important;overflow:hidden!important;touch-action:none!important;scrollbar-width:none!important;
+ -webkit-overflow-scrolling:auto!important;scroll-behavior:smooth!important;overscroll-behavior:contain!important}
+.board-wrap::-webkit-scrollbar{display:none!important}
+#board{box-sizing:border-box!important;position:relative!important;direction:ltr!important;width:100%!important;max-width:none!important;
+ height:159.217877vw!important;min-height:0!important;max-height:none!important;
+ margin:0!important;padding:0 2.2346369vw!important;
+ display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;
+ grid-template-rows:repeat(10,var(--ref-pitch))!important;column-gap:0!important;row-gap:0!important;
+ align-items:center!important;align-content:start!important;justify-items:start!important}
+#board .apple{box-sizing:border-box!important;display:grid!important;place-items:center!important;
+ width:98.245614%!important;height:98.245614%!important;max-width:none!important;max-height:none!important;
+ min-width:0!important;min-height:0!important;aspect-ratio:1!important;align-self:center!important;justify-self:start!important;
+ border:0!important;outline:0!important;padding:0!important;margin:0!important;overflow:visible!important;
+ background:transparent!important;box-shadow:none!important;transform:none!important;-webkit-tap-highlight-color:transparent!important;
+ touch-action:manipulation!important}
+#board .apple img,#board .apple.mushroom-choice img{box-sizing:border-box!important;display:block!important;
+ width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;
+ margin:0!important;object-fit:contain!important;transform:scale(1.045)!important;transform-origin:center!important}
+#board .apple:focus,#board .apple:active,#board .apple:hover{outline:none!important;border:0!important;box-shadow:none!important;background:transparent!important}
+#board .multiplier{box-sizing:border-box!important;justify-self:start!important;align-self:center!important;
+ width:85.964912%!important;max-width:none!important;min-width:0!important;
+ height:37.719298%!important;min-height:0!important;max-height:none!important;
+ padding:0!important;margin:0!important;border:0!important;border-radius:3.0vw!important;
+ background:#004432d5!important;color:#cde6d9!important;line-height:1!important;font-size:2.7vw!important;
+ box-shadow:none!important}
+#board .multiplier.active{background:#57c938!important;color:#fff!important;box-shadow:none!important}
+/* Bottom: original control row at y1262, bet card y1350, footer at y1527 (image coordinates). */
+.controls{position:absolute!important;top:165.083799vw!important;left:0!important;width:100%!important;
+ height:auto!important;min-height:0!important;max-height:none!important;
+ margin:0!important;padding:0!important;border:0!important;background:transparent!important;display:block!important}
+.controls .quick{box-sizing:border-box!important;width:91.061453%!important;margin:0 auto!important;
+ display:grid!important;direction:ltr!important;grid-template-columns:repeat(4,1fr)!important;gap:2.1vw!important;
+ height:10.055866vw!important;min-height:0!important;max-height:none!important}
+.controls .quick button{box-sizing:border-box!important;width:100%!important;height:100%!important;min-height:0!important;
+ margin:0!important;padding:0!important;border-radius:1.8vw!important;line-height:1!important;font-size:3.6vw!important}
+.game .controls .betcard{box-sizing:border-box!important;width:91.061453%!important;height:20.111732vw!important;
+ margin:2.234637vw auto 0!important;padding:0 2.65vw!important;border-radius:1.7vw!important;
+ background:#294467ed!important;display:flex!important;align-items:center!important;justify-content:center!important}
+.game .controls .betcard .betrow{display:flex!important;direction:ltr!important;align-items:center!important;
+ height:100%!important;width:100%!important;gap:3.2vw!important;margin:0!important;padding:0!important}
+.game .controls #play.action{flex:0 0 29.0%!important;min-width:0!important;min-height:0!important;
+ height:11.312849vw!important;max-height:none!important;margin:0!important;padding:0!important;
+ font-size:4vw!important;border-radius:1.7vw!important}
+.game .controls .betcard .betbox{box-sizing:border-box!important;flex:1 1 0!important;
+ min-width:0!important;min-height:0!important;height:12.6vw!important;padding:0!important;
+ background:transparent!important;border:0!important;box-shadow:none!important}
+.game .controls .betcard .betline{height:8.1vw!important;min-height:0!important;display:flex!important;align-items:center!important;padding:0!important;
+ border-bottom:.35vw solid #93afc0!important}
+.game .controls .betcard #bet{font-size:4.6vw!important;height:6vw!important;min-height:0!important;line-height:1!important}
+.game .controls .betcard .betcurrency{font-size:3.4vw!important}
+.game .controls .betmeta{font-size:2.6vw!important;line-height:1.15!important;margin-top:1.2vw!important}
+.game .controls .bottom{box-sizing:border-box!important;display:flex!important;justify-content:space-between!important;
+ align-items:center!important;width:91.061453%!important;margin:4.85vw auto 0!important;min-height:0!important;height:5.86vw!important;gap:0!important}
+.game .controls .bottom button{width:auto!important;max-width:45%!important;flex:0 0 auto!important;height:100%!important;
+ min-height:0!important;padding:0!important;margin:0!important;font-size:2.8vw!important}
+.controls .active-earnings{width:91.061453%!important;margin:0 auto!important;
+ padding:0!important;grid-template-columns:1fr!important;gap:2.2vw!important}
+.controls .earnings-total{font-size:4.4vw!important;min-height:7.5vw!important;padding:1.5vw!important}
+.controls #cashoutBtn{font-size:5vw!important;min-height:10vw!important}
+/* Shorter screens keep the board and controls usable without changing the horizontal measurement grid. */
+@media(max-height:830px){
+ .board-wrap{height:min(123.743017vw,calc(100dvh - 255px))!important}
+ .controls{top:auto!important;bottom:1vw!important}
+}
+@media(max-height:735px){
+ .board-wrap{height:min(123.743017vw,calc(100dvh - 255px))!important}
+ .controls{top:auto!important;bottom:1vw!important}
 }
 &lt;/style&gt;
 &lt;/head&gt;&lt;body&gt;&lt;main class=&quot;game&quot;&gt;
@@ -1403,7 +1516,9 @@ document.getElementById(&#x27;bet&#x27;).addEventListener(&#x27;input&#x27;,()=&
 let oneTapEnabled=false;
 let oneTapBet=20;function toggleOneTap(){if(oneTapEnabled&amp;&amp;!playing){document.getElementById(&#x27;bet&#x27;).value=oneTapBet.toFixed(2);playGame();}else{showSettings();}}
 
-&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe></section>
+&lt;/script&gt;
+&lt;script type=&quot;application/json&quot; id=&quot;geometry-reference&quot;&gt;{&quot;source_info&quot;: {&quot;image_pixels&quot;: {&quot;width&quot;: 716, &quot;height&quot;: 1600}, &quot;origin&quot;: &quot;upper-left; X increases right, Y increases down&quot;, &quot;pixel_grid&quot;: &quot;image screenshot pixels, not physical millimeters or CSS device-independent px&quot;, &quot;interpretation&quot;: &quot;Distances are traced to visible rounded silhouettes, excluding blurred shadows where possible.&quot;, &quot;uncertainty&quot;: &quot;Disc and control bounds are estimates, typically ±2–5 source-image pixels. Single-pixel physical accuracy cannot be established where antialiasing, shadows or clipping obscure edges.&quot;, &quot;grid_notes&quot;: &quot;Eight visible rows by five columns; image does not establish locations of any rows outside this screenshot.&quot;, &quot;reference&quot;: &quot;User-supplied screenshot; no outside visual sources used.&quot;, &quot;device_projection&quot;: &quot;Keep a common scale s=min(viewportW/716,viewportH/1600) to preserve proportions. x=leftMargin+s*sourceX, y=topMargin+s*sourceY; crop/remove system-bar height only if app viewport excludes it.&quot;}, &quot;column_centers_px&quot;: [186, 300, 414, 529, 643], &quot;row_centers_px&quot;: [252, 366, 480, 594, 708, 822, 936, 1050], &quot;nominal_disc_diameter_px&quot;: 112}&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe></section>
 <button aria-label="فتح سكريبت IMX" id="imxFab" type="button">IMX</button><div aria-hidden="true" id="imxOverlay"><div id="imxModal"><button aria-label="إغلاق السكريبت" id="imxClose" type="button">×</button><section class="panel" id="imxPanel"><h2>⚙️ سكريبت IMX</h2><iframe id="imxFrame" srcdoc="&lt;!DOCTYPE html&gt;
 
 &lt;html dir=&quot;rtl&quot; lang=&quot;ar&quot;&gt;
