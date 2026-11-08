@@ -17,42 +17,23 @@ jobs:
     steps:
       - name: Check out project
         uses: actions/checkout@v4
-        with:
-          persist-credentials: true
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
-      - name: Use Android SDK preinstalled on GitHub runner
-        run: |
-          echo "ANDROID_HOME=$ANDROID_HOME"
-          test -d "$ANDROID_HOME"
-          ls "$ANDROID_HOME/platforms"
-          ls "$ANDROID_HOME/build-tools"
-      - name: Install Android 35 platform if needed
-        run: |
-          if [ ! -d "$ANDROID_HOME/platforms/android-35" ] || [ ! -d "$ANDROID_HOME/build-tools/35.0.0" ]; then
-            yes | sdkmanager --licenses >/dev/null || true
-            sdkmanager "platforms;android-35" "build-tools;35.0.0"
-          fi
-      - name: Get Gradle 8.9 from distribution mirrors
-        run: |
-          curl --fail --location --retry 2 --retry-all-errors --connect-timeout 20 --max-time 180 \
-            https://downloads.gradle.org/distributions/gradle-8.9-bin.zip -o /tmp/gradle-8.9.zip \
-          || curl --fail --location --retry 2 --retry-all-errors --connect-timeout 20 --max-time 180 \
-            https://github.com/gradle/gradle-distributions/releases/download/v8.9.0/gradle-8.9-bin.zip -o /tmp/gradle-8.9.zip
-          unzip -q /tmp/gradle-8.9.zip -d "$RUNNER_TEMP"
-      - name: Build APK
+      - name: Build installable Android APK
         working-directory: apple-imx-android
-        run: "$RUNNER_TEMP/gradle-8.9/bin/gradle" --no-daemon --stacktrace :app:assembleDebug
-      - name: Save installable APK artifact
+        run: |
+          gradle --version
+          gradle --no-daemon --stacktrace :app:assembleDebug
+      - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: AppleIMX-V28-Android-APK
           path: apple-imx-android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
-      - name: Publish direct APK download
+      - name: Publish APK for direct download
         run: |
           mkdir -p apple-imx-download
           cp apple-imx-android/app/build/outputs/apk/debug/app-debug.apk apple-imx-download/AppleIMX_V28.apk
