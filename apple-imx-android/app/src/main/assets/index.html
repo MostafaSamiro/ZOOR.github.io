@@ -3,7 +3,7 @@
 <html dir="rtl" lang="ar">
 <head>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>APPLE OF FORTUNE + IMX - V30</title>
+<title>APPLE OF FORTUNE + IMX - V31</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#071b16;color:#fff;font-family:Arial,Tahoma,sans-serif}
@@ -1269,6 +1269,16 @@ h1{position:absolute!important;top:14.944134vw!important;left:0!important;width:
   touch-action:none!important;overscroll-behavior:none!important;}
 @media(prefers-reduced-motion:reduce){.pick-loader .loader-ring{animation-duration:1.1s!important}}
 &lt;/style&gt;
+&lt;style id=&quot;v31-completed-row-visibility&quot;&gt;
+.board .apple.completed-choice,
+.board .apple.just-finished.completed-choice,
+.board-wrap.selection-pending .apple.completed-choice{opacity:1!important;filter:none!important;animation:none!important}
+.board .apple.completed-choice img{filter:none!important}
+.board .apple.completed-other,
+.board .apple.just-finished.completed-other,
+.board-wrap.selection-pending .apple.completed-other{opacity:.42!important;filter:brightness(.90) saturate(.88)!important;animation:none!important}
+.board .multiplier{transition:background-color .25s ease,opacity .25s ease!important}
+&lt;/style&gt;
 &lt;/head&gt;&lt;body&gt;&lt;main class=&quot;game&quot;&gt;
 &lt;div class=&quot;top&quot;&gt;
 &lt;div class=&quot;top-left&quot;&gt;
@@ -1349,10 +1359,14 @@ function scrollBoardToCurrentRow(immediate=false){
  if(!viewport)return;
  cancelAnimationFrame(boardMotionRAF);
  requestAnimationFrame(()=&gt;{
-   const pitch=board.querySelector(&#x27;.multiplier&#x27;)?.getBoundingClientRect().height
-       || (viewport.clientWidth * 114/716);
+   // Three video-like smooth downward shifts, then a stationary viewport.
+   if(!immediate &amp;&amp; steps&gt;3)return;
+   const multiplierRows=board.querySelectorAll(&#x27;.multiplier&#x27;);
+   const pitch=multiplierRows.length&gt;=2
+      ? multiplierRows[1].getBoundingClientRect().top-multiplierRows[0].getBoundingClientRect().top
+      : (viewport.clientWidth * 114/716);
    const maximum=Math.max(0,viewport.scrollHeight-viewport.clientHeight);
-   const target=Math.max(0,Math.min(maximum,maximum - Math.min(steps,3)*pitch));
+   const target=Math.max(0,Math.min(maximum,maximum - Math.min(steps,3)*pitch*0.82));
    if(immediate || window.matchMedia(&#x27;(prefers-reduced-motion: reduce)&#x27;).matches){
       viewport.scrollTop=target;return;
    }
@@ -1393,13 +1407,14 @@ function render(){
  for(let r=0;r&lt;ROWS;r++){
   const gameRow=r; // ترتيب موحّد: 0 أعلى اللوحة و9 أسفلها
   const distance=currentRow-gameRow;
-  const completed=gameRow&gt;currentRow&amp;&amp;picked.some(p=&gt;p.r===gameRow);const expired=completed&amp;&amp;gameRow-currentRow&gt;2;
-  const rowOpacity=revealAll?1:(completed?(expired?0:0.24):(distance&lt;=0?1:distance&lt;=2?0.86:distance===3?0.69:0.47));
+  // Completed rows remain present at their original positions for the entire round.
+  const completed=picked.some(p=&gt;p.r===gameRow);
+  const rowOpacity=completed?0.54:(revealAll?1:(distance&lt;=0?1:distance&lt;=2?0.86:distance===3?0.69:0.47));
   let m=document.createElement(&#x27;div&#x27;);m.className=&#x27;multiplier&#x27;+(!revealAll&amp;&amp;gameRow===currentRow?&#x27; active&#x27;:&#x27;&#x27;);m.style.opacity=String(rowOpacity);m.textContent=(!playing&amp;&amp;!revealAll&amp;&amp;steps===0)?&#x27;&#x27;:&#x27;x&#x27;+MULT[ROWS-1-gameRow];board.appendChild(m);
   for(let c=0;c&lt;COLS;c++){
    let b=document.createElement(&#x27;button&#x27;);b.className=&#x27;apple&#x27;;let chosen=picked.some(p=&gt;p.r===gameRow&amp;&amp;p.c===c);
    const dimmed=completed&amp;&amp;!chosen;
-   b.style.opacity=String(revealAll?1:(expired?0:chosen?1:dimmed?0.19:rowOpacity));
+   b.style.opacity=String(chosen?1:(completed?0.42:rowOpacity));
    if(completed){b.classList.add(chosen?&#x27;completed-choice&#x27;:&#x27;completed-other&#x27;);if(gameRow===currentRow+1)b.classList.add(&#x27;just-finished&#x27;);}
    let show=revealAll||chosen;let isSafe=safe[gameRow].includes(c);
    const showMushroom=!show &amp;&amp; gameRow===currentRow;
