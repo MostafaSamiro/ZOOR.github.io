@@ -3,7 +3,7 @@
 <html dir="rtl" lang="ar">
 <head>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>APPLE OF FORTUNE + IMX - V33</title>
+<title>APPLE OF FORTUNE + IMX - V34</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#071b16;color:#fff;font-family:Arial,Tahoma,sans-serif}
@@ -1382,6 +1382,17 @@ h1{position:absolute!important;top:14.944134vw!important;left:0!important;width:
  .board-wrap{height:min(125vw,calc(100dvh - 245px))!important;}
  #resultPopup.win .round-end-actions{bottom:calc(1.5vh + env(safe-area-inset-bottom,0px))!important;}
 }
+&lt;/style&gt;
+
+&lt;style id=&quot;v34-complete-last-row&quot;&gt;
+/* Keep last multiplier row completely visible after three automatic downward shifts. */
+#board,.board{
+  height:calc(11.75 * var(--ref-pitch))!important;
+  padding-bottom:calc(.75 * var(--ref-pitch))!important;
+  box-sizing:border-box!important;
+  overflow-anchor:none!important;
+}
+.board-wrap{overflow-anchor:none!important;}
 &lt;/style&gt;
 &lt;/head&gt;&lt;body&gt;&lt;main class=&quot;game&quot;&gt;
 &lt;div class=&quot;top&quot;&gt;
