@@ -3,7 +3,7 @@
 <html dir="rtl" lang="ar">
 <head>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>APPLE OF FORTUNE + IMX - V34</title>
+<title>APPLE OF FORTUNE + IMX - V35</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#071b16;color:#fff;font-family:Arial,Tahoma,sans-serif}
@@ -1385,7 +1385,9 @@ h1{position:absolute!important;top:14.944134vw!important;left:0!important;width:
 &lt;/style&gt;
 
 &lt;style id=&quot;v34-complete-last-row&quot;&gt;
-/* Keep last multiplier row completely visible after three automatic downward shifts. */
+/* V34: Board&#x27;s downward animation uses 0.18 row-pitch per step for three steps.
+   Reserve a 0.75-row bottom buffer so those moves never crop the last x1.23 row.
+   Do not change pitch, tile sizes, controls, game logic, or the animation itself. */
 #board,.board{
   height:calc(11.75 * var(--ref-pitch))!important;
   padding-bottom:calc(.75 * var(--ref-pitch))!important;
@@ -1393,6 +1395,119 @@ h1{position:absolute!important;top:14.944134vw!important;left:0!important;width:
   overflow-anchor:none!important;
 }
 .board-wrap{overflow-anchor:none!important;}
+&lt;/style&gt;
+
+&lt;style id=&quot;v35-reference-bottom-controls&quot;&gt;
+/* Target: user-supplied image 563.jpg, screenshot crop 1536 × 779.
+   Only adjust the lower wager panel and bottom navigation; never change grid,
+   bet validation, gameplay, 3 automatic board shifts, winnings, or IMX. */
+.game .controls .quick {margin-top:0!important;}
+.game .controls .quick button{
+  background:#4b93d5!important;box-shadow:none!important;
+  border:0!important;color:white!important;
+  font-weight:600!important;
+}
+.game .controls .quick button:disabled{
+  background:rgba(72,147,211,.68)!important;
+  color:#c4d1c4!important;opacity:.48!important;
+  box-shadow:none!important;
+}
+/* V34 already matches the first reference&#x27;s 308-pixel card on 1536-pixel width.
+   Its width, height and 34px vertical space above it are intentionally unchanged. */
+.game .controls .betcard {background:#2b4665!important; box-shadow:none!important;}
+.game .controls .betcard .betrow #play {
+  height:11.08vw!important; max-height:11.08vw!important;
+  border:0!important;border-radius:2vw!important;
+  font-size:3.75vw!important;font-weight:500!important;
+  background:#498fd1!important;box-shadow:none!important;
+}
+.game .controls .betcard .betline {
+  direction:rtl!important; justify-content:flex-start!important;
+  border-bottom:.28vw solid #94aaba!important;
+}
+.game .controls .betcard .betline #bet {
+  order:0!important;
+  flex:0 0 var(--ref-stake-width,46px)!important;
+  width:var(--ref-stake-width,46px)!important;
+  min-width:0!important;max-width:118px!important;
+  padding:0!important; margin:0!important;
+  text-align:right!important; direction:ltr!important;
+  font-size:4.9vw!important; font-weight:400!important;
+}
+.game .controls .betcard .betline .betcurrency {
+  order:1!important;flex:0 0 auto!important;
+  margin:0 1.3vw 0 0!important;
+  font-size:4.0vw!important;
+  font-weight:400!important;
+  color:#fff!important;
+}
+.game .controls .betcard .betmeta {
+  text-align:right!important;
+  direction:ltr!important;
+  padding:0 .8vw 0 0!important;
+  margin-top:2.35vw!important;
+  font-size:clamp(9px,2.55vw,11.5px)!important;
+  color:#94a8b8!important;
+  opacity:.78!important;
+  line-height:1.15!important;
+  white-space:nowrap!important;
+}
+/* Centre each navigation group in its own half of the viewport, as in 563.jpg.
+   Keep the thin divider at exactly 50% of the screen. */
+.game .controls .bottom {
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  direction:ltr!important;
+  align-items:center!important;justify-items:center!important;
+  justify-content:initial!important;
+  height:6vw!important;min-height:0!important;
+  width:91.061453%!important;
+  gap:0!important;margin-top:4.7vw!important;
+  isolation:isolate!important;
+}
+.game .controls .bottom::before {
+  content:&#x27;&#x27;!important;position:absolute!important;
+  top:-.5vw!important;bottom:-.5vw!important;left:50%!important;
+  width:1px!important;background:rgba(225,241,231,.5)!important;
+}
+.game .controls .bottom::after {
+  content:&#x27;&#x27;!important;position:absolute!important;
+  left:-5vw!important;right:-5vw!important;top:-2.0vw!important;bottom:-6vw!important;
+  background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.43))!important;
+  z-index:-1!important;pointer-events:none!important;
+}
+.game .controls .bottom button {
+  flex:none!important;order:unset!important;
+  width:max-content!important;max-width:none!important;
+  grid-row:1!important;
+  height:100%!important;min-height:0!important;
+  padding:0 1vw!important;margin:0!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  direction:rtl!important;gap:.85vw!important;
+  font-family:Arial,Tahoma,sans-serif!important;
+  font-weight:700!important;
+  font-size:3.15vw!important;line-height:1.1!important;
+  background:transparent!important;border:0!important;
+  color:#fff!important;box-shadow:none!important;
+  white-space:nowrap!important;
+}
+.game .controls .bottom #oneTapBtn{grid-column:1!important;}
+.game .controls .bottom #settingsBtn{grid-column:2!important;}
+.game .controls .bottom .footer-lightning{
+  display:inline-block!important;font-size:5.1vw!important;
+  line-height:1!important;filter:grayscale(1) brightness(5)!important;
+}
+.game .controls .bottom .footer-gear{
+  display:inline-block!important;
+  font-family:Arial,&#x27;DejaVu Sans&#x27;,sans-serif!important;
+  font-variant-emoji:text!important;
+  font-size:5.5vw!important;line-height:1!important;
+  color:#fff!important;
+}
+@media(max-width:360px){
+ .game .controls .bottom button{font-size:3.35vw!important;}
+ .game .controls .bottom .footer-gear{font-size:5.6vw!important;}
+}
 &lt;/style&gt;
 &lt;/head&gt;&lt;body&gt;&lt;main class=&quot;game&quot;&gt;
 &lt;div class=&quot;top&quot;&gt;
@@ -1409,8 +1524,8 @@ h1{position:absolute!important;top:14.944134vw!important;left:0!important;width:
 &lt;div aria-live=&quot;polite&quot; id=&quot;resultPopup&quot; role=&quot;status&quot;&gt;&lt;/div&gt;
 &lt;section class=&quot;controls&quot;&gt;&lt;div class=&quot;quick&quot;&gt;
 &lt;button onclick=&quot;setBet(&#x27;max&#x27;)&quot;&gt;أقصى&lt;/button&gt;&lt;button onclick=&quot;setBet(&#x27;half&#x27;)&quot;&gt;X/2&lt;/button&gt;&lt;button onclick=&quot;setBet(&#x27;double&#x27;)&quot;&gt;X2&lt;/button&gt;&lt;button onclick=&quot;setBet(&#x27;min&#x27;)&quot;&gt;أدنى&lt;/button&gt;
-&lt;/div&gt;&lt;div class=&quot;betcard&quot;&gt;&lt;div class=&quot;betrow&quot;&gt;&lt;button class=&quot;action&quot; id=&quot;play&quot; onclick=&quot;playGame()&quot;&gt;الرهان&lt;/button&gt;&lt;div class=&quot;betbox&quot;&gt;&lt;div class=&quot;betline&quot;&gt;&lt;span class=&quot;betcurrency&quot;&gt;ج.م&lt;/span&gt;&lt;input aria-label=&quot;مبلغ الرهان بالجنيه المصري&quot; id=&quot;bet&quot; inputmode=&quot;decimal&quot; max=&quot;71975.5&quot; min=&quot;10&quot; step=&quot;0.01&quot; type=&quot;number&quot; value=&quot;20&quot;/&gt;&lt;/div&gt;&lt;div class=&quot;betmeta&quot; id=&quot;betMeta&quot;&gt;من 10 ج.م - إلى 71,975.50 ج.م&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;bottom&quot;&gt;&lt;button id=&quot;oneTapBtn&quot; onclick=&quot;toggleOneTap()&quot; type=&quot;button&quot;&gt;&lt;span class=&quot;footer-lightning&quot; aria-hidden=&quot;true&quot;&gt;⚡&lt;/span&gt; الرهان بنقرة واحدة&lt;/button&gt;&lt;button id=&quot;settingsBtn&quot; onclick=&quot;showLocalSettings()&quot; ondblclick=&#x27;window.parent.postMessage({type:&quot;IMX_OPEN&quot;},&quot;*&quot;)&#x27; type=&quot;button&quot;&gt;إعدادات ⚙️&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&quot;betcard&quot;&gt;&lt;div class=&quot;betrow&quot;&gt;&lt;button class=&quot;action&quot; id=&quot;play&quot; onclick=&quot;playGame()&quot;&gt;الرهان&lt;/button&gt;&lt;div class=&quot;betbox&quot;&gt;&lt;div class=&quot;betline&quot;&gt;&lt;span class=&quot;betcurrency&quot;&gt;ج.م&lt;/span&gt;&lt;input aria-label=&quot;مبلغ الرهان بالجنيه المصري&quot; id=&quot;bet&quot; inputmode=&quot;decimal&quot; max=&quot;71975.5&quot; min=&quot;10&quot; step=&quot;0.01&quot; type=&quot;number&quot; value=&quot;20&quot;/&gt;&lt;/div&gt;&lt;div class=&quot;betmeta&quot; id=&quot;betMeta&quot;&gt;min 10 ج.م - max 71975.50 ج.م&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;bottom&quot;&gt;&lt;button id=&quot;oneTapBtn&quot; onclick=&quot;toggleOneTap()&quot; type=&quot;button&quot;&gt;&lt;span class=&quot;footer-lightning&quot; aria-hidden=&quot;true&quot;&gt;⚡&lt;/span&gt;&lt;span class=&quot;one-tap-label&quot;&gt;بنقرة واحدة&lt;/span&gt;&lt;/button&gt;&lt;button id=&quot;settingsBtn&quot; onclick=&quot;showLocalSettings()&quot; ondblclick=&#x27;window.parent.postMessage({type:&quot;IMX_OPEN&quot;},&quot;*&quot;)&#x27; type=&quot;button&quot;&gt;&lt;span class=&quot;footer-gear&quot; aria-hidden=&quot;true&quot;&gt;⚙︎&lt;/span&gt;&lt;span class=&quot;footer-settings-label&quot;&gt;إعدادات&lt;/span&gt;&lt;/button&gt;&lt;/div&gt;
  &lt;div class=&quot;active-earnings&quot; id=&quot;activeEarnings&quot; aria-live=&quot;polite&quot;&gt;&lt;div class=&quot;earnings-total&quot;&gt;الأرباح الحالية: &lt;strong id=&quot;currentEarnings&quot;&gt;0.00&lt;/strong&gt; ج.م&lt;/div&gt;&lt;button type=&quot;button&quot; id=&quot;cashoutBtn&quot; onclick=&quot;cashOut()&quot; disabled&gt;خذ الأرباح&lt;/button&gt;&lt;/div&gt;
 &lt;/section&gt;
 &lt;/main&gt;
@@ -1540,7 +1655,7 @@ function render(){
   }
  }
 }
-function setBet(type){let input=document.getElementById(&#x27;bet&#x27;),v=Number(input.value)||MIN_BET;if(type===&#x27;max&#x27;)v=balance;else if(type===&#x27;half&#x27;)v=v/2;else if(type===&#x27;double&#x27;)v=v*2;else v=MIN_BET;input.value=formatStake(Math.max(MIN_BET,Math.min(balance,v)));syncQuickButtons();}
+function setBet(type){let input=document.getElementById(&#x27;bet&#x27;),v=Number(input.value)||MIN_BET;if(type===&#x27;max&#x27;)v=balance;else if(type===&#x27;half&#x27;)v=v/2;else if(type===&#x27;double&#x27;)v=v*2;else v=MIN_BET;input.value=formatStake(Math.max(MIN_BET,Math.min(balance,v)));syncQuickButtons();updateBetMeta();}
 function playGame(){
  if(playing){cashOut();return}
  bet=Number(document.getElementById(&#x27;bet&#x27;).value);
@@ -1619,7 +1734,12 @@ function updateBetMeta(){
  const meta=document.getElementById(&#x27;betMeta&#x27;);
  if(!meta)return;
  const max=Number(document.getElementById(&#x27;bet&#x27;).max||71975.5);
- meta.textContent=&#x27;من 10 ج.م - إلى &#x27;+max.toLocaleString(&#x27;en-US&#x27;,{minimumFractionDigits:2,maximumFractionDigits:2})+&#x27; ج.م&#x27;;
+ meta.textContent=&#x27;min &#x27;+MIN_BET+&#x27; ج.م - max &#x27;+max.toFixed(2)+&#x27; ج.م&#x27;;
+  const stake=document.getElementById(&#x27;bet&#x27;);
+  if(stake){
+    const len=String(stake.value||&#x27;20&#x27;).length;
+    stake.style.setProperty(&#x27;--ref-stake-width&#x27;,Math.min(118,Math.max(46,Math.round(len*10.5+15)))+&#x27;px&#x27;);
+  }
 }
 function message(t,type,amount){
  const s=document.getElementById(&#x27;status&#x27;);
@@ -1876,8 +1996,7 @@ function closeIMXPanel(){
   function restorePos(){
     try{const p=JSON.parse(localStorage.getItem(key)||'null'); if(p&&Number.isFinite(p.left)&&Number.isFinite(p.top)){applyPos(p.left,p.top); return;}}catch(e){}
     applyPos(window.innerWidth-btn.offsetWidth-8, window.innerHeight>760 ? window.innerHeight-btn.offsetHeight-198 : window.innerHeight-btn.offsetHeight-181);
-  }
-  btn.addEventListener('pointerdown',e=>{dragging=true;moved=false;startX=e.clientX;startY=e.clientY;originX=parseFloat(btn.style.left)|| (window.innerWidth-btn.offsetWidth-12);originY=parseFloat(btn.style.top)|| (window.innerHeight>760 ? window.innerHeight-btn.offsetHeight-198 : window.innerHeight-btn.offsetHeight-181);btn.classList.add('dragging');btn.setPointerCapture && btn.setPointerCapture(e.pointerId);});
+  }  btn.addEventListener('pointerdown',e=>{dragging=true;moved=false;startX=e.clientX;startY=e.clientY;originX=parseFloat(btn.style.left)|| (window.innerWidth-btn.offsetWidth-12);originY=parseFloat(btn.style.top)|| (window.innerHeight>760 ? window.innerHeight-btn.offsetHeight-198 : window.innerHeight-btn.offsetHeight-181);btn.classList.add('dragging');btn.setPointerCapture && btn.setPointerCapture(e.pointerId);});
   btn.addEventListener('pointermove',e=>{if(!dragging) return; const dx=e.clientX-startX, dy=e.clientY-startY; if(Math.abs(dx)>4||Math.abs(dy)>4) moved=true; applyPos(originX+dx, originY+dy);});
   function endDrag(e){if(!dragging) return; dragging=false; btn.classList.remove('dragging'); try{btn.releasePointerCapture && btn.releasePointerCapture(e.pointerId);}catch(err){} savePos();}
   btn.addEventListener('pointerup',endDrag); btn.addEventListener('pointercancel',endDrag);
